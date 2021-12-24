@@ -33,11 +33,17 @@ namespace FundAppsScripts.Scripts
 
             // add body params to the request
             request.AddFile("positions", pathToFile, "text/csv");
-            request.AddParameter("snapshotDate", snapshotDate, ParameterType.RequestBody);
-
+            request.AddParameter("snapshotDate", snapshotDate);
+            
+            //if the file format type is not specified then the format will be 2 by default
+            //2 means Consensys
+            // Please refer to the documentation for more info: https://github.com/fundapps/api-examples#available-nomenclatures-get-restapiv1nomenclatures
+            request.AddParameter("format", "2");
+            
             // add header with the rapptr environment
             request.AddHeader("X-Client-Environment", clientEnvironmentSubDomain);
-
+            request.AddHeader("Content-Type", "multipart/form-data");
+            
             var response = client.Execute<TaskProfileResponse>(request);
 
             // if response comes back with a 200 status, then as task for the positions file was created successfully
