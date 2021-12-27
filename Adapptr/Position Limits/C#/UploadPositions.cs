@@ -19,12 +19,7 @@ namespace FundAppsScripts.Scripts
             var pathToFile = "";
             // the snapshot date of your positions in the format yyyy-MM-dd
             var snapshotDate = DateTime.Today.ToString("yyyy-MM-dd");
-            
-            // if the file format type is not specified then the format will be 2 by default
-            // 2 means Consensys
-            // please refer to the documentation for more info: https://github.com/fundapps/api-examples#available-nomenclatures-get-restapiv1nomenclatures
-            var format = "2";
-            
+
             //Example using RestSharp (https://github.com/restsharp/RestSharp)
 
             //Create a client which will connect to the HTTPS endpoint with the API credentials you have been provided
@@ -39,7 +34,11 @@ namespace FundAppsScripts.Scripts
             // add body params to the request
             request.AddFile("positions", pathToFile, "text/csv");
             request.AddParameter("snapshotDate", snapshotDate);
-            request.AddParameter("format", format);
+            
+            //if the file format type is not specified then the format will be 2 by default
+            //2 means Consensys
+            // Please refer to the documentation for more info: https://github.com/fundapps/api-examples#available-nomenclatures-get-restapiv1nomenclatures
+            request.AddParameter("format", "2");
             
             // add header with the rapptr environment
             request.AddHeader("X-Client-Environment", clientEnvironmentSubDomain);
