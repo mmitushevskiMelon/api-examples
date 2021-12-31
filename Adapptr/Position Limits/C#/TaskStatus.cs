@@ -9,6 +9,13 @@ namespace FundAppsScripts.Scripts
 {
     public partial class AdapptrScripts
     {
+        readonly AdapptrConfig _adapptrConfig;
+
+        public AdapptrScripts(AdapptrConfig adapptrConfig)
+        {
+            _adapptrConfig = adapptrConfig;
+        }
+        
         public void GetTaskStatus(string taskId = null)
         {
             var baseUrl = _adapptrConfig.BaseUrl;
