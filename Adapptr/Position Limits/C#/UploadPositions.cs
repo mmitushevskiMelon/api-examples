@@ -8,6 +8,13 @@ namespace FundAppsScripts.Scripts
 {
     public partial class AdapptrScripts
     {
+        readonly AdapptrConfig _adapptrConfig;
+
+        public AdapptrScripts(AdapptrConfig adapptrConfig)
+        {
+            _adapptrConfig = adapptrConfig;
+        }
+        
         public string UploadPositions()
         {
             var baseUrl = _adapptrConfig.BaseUrl;
